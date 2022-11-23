@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n static django_bootstrap5 %}
+
+{% block page_title %}{% trans "Object" %}: {{ datedobject }}{% endblock %}
+
+{% block bootstrap5_extra_head %}
+{{ block.super}}
+{{ form.media.css }}
+{% endblock %}
+
+{% block bootstrap5_extra_script %}
+{{ block.super }}
+{{ form.media.js }}
+{% endblock %}
+
+{% block content %}
+<form role="form" class="" method="post" novalidate>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary" type="submit">{% trans 'Save' %}</button>
+    <a href="{% url 'list' %}" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+</form>
+{% endblock %}

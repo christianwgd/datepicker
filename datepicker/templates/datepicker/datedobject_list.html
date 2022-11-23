@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n static django_bootstrap5 %}
+
+{% block page_title %}{% trans "Objects with dates" %}{% endblock %}
+
+
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans 'Name' %}</th>
+            <th>{% trans 'Timestamp' %}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in datedobject_list %}
+        <tr>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.timestamp|date:"SHORT_DATETIME_FORMAT" }}</td>
+            <td><a href="{% url 'update' obj.pk %}">{% trans 'Update' %}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'create' %}">{% trans 'New' %}</a>
+
+{% endblock %}
